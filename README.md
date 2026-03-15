@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# KM
-知识管理系统
-=======
 # Knowledge Management System
 
 基于 SpringBoot 3.5.11 和 MySQL 8 的知识管理系统，支持 OAuth2 单点登录。
