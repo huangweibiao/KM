@@ -1,10 +1,5 @@
 # Compiled class files
 *.class
-
-# Log files
-*.log
-
-# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -25,12 +20,59 @@ buildNumber.properties
 .settings/
 .classpath
 .project
+.factorypath
 
-# macOS
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+
+# Vue/React
+frontend/dist/
+frontend/dist-ssr/
+*.local
+
+# Log files
+*.log
+logs/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
 
 # Spring Boot
-spring-boot-*.log
+spring-boot-starter-parent.log
 
-# Application specific
-application-local.properties
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# Vite
+.vite/
+
+# Testing
+coverage/
+.nyc_output/
