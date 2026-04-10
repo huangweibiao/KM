@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 知识库状态管理
  * 使用Pinia管理当前知识库状态
  */
@@ -11,8 +11,8 @@ import type { Wiki } from '@/api/wiki'
  */
 export const useWikiStore = defineStore('wiki', () => {
   // State
-  const currentWiki = ref ref<Wiki | null>(null)
-  const wikiList = ref ref<Wiki[]>([])
+  const currentWiki = ref<Wiki | null>(null)
+  const wikiList = ref<Wiki[]>([])
 
   // Getters
   const currentWikiId = computed(() => currentWiki.value?.id)

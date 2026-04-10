@@ -2,13 +2,13 @@
  * HTTP请求工具
  * 基于axios封装，处理请求拦截、响应拦截、错误处理等
  */
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { ElMessage } from 'element-plus';
 import { useUserStore } from '../stores/user';
 
 // 创建axios实例
 const request: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json'

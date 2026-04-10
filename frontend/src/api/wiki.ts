@@ -45,7 +45,7 @@ export interface Wiki {
  * @returns 知识库列表
  */
 export const getWikiList = (): Promise<any> => {
-  return request.get('/api/wikis');
+  return request.get('/wikis');
 };
 
 /**
@@ -54,7 +54,7 @@ export const getWikiList = (): Promise<any> => {
  * @returns 知识库详情
  */
 export const getWikiById = (id: number): Promise<any> => {
-  return request.get(`/api/wikis/${id}`);
+  return request.get(`/wikis/${id}`);
 };
 
 /**
@@ -63,7 +63,7 @@ export const getWikiById = (id: number): Promise<any> => {
  * @returns 创建的知识库
  */
 export const createWiki = (params: CreateWikiParams): Promise<any> => {
-  return request.post('/api/wikis', params);
+  return request.post('/wikis', params);
 };
 
 /**
@@ -73,7 +73,7 @@ export const createWiki = (params: CreateWikiParams): Promise<any> => {
  * @returns 更新后的知识库
  */
 export const updateWiki = (id: number, params: UpdateWikiParams): Promise<any> => {
-  return request.put(`/api/wikis/${id}`, params);
+  return request.put(`/wikis/${id}`, params);
 };
 
 /**
@@ -82,7 +82,7 @@ export const updateWiki = (id: number, params: UpdateWikiParams): Promise<any> =
  * @returns 删除结果
  */
 export const deleteWiki = (id: number): Promise<any> => {
-  return request.delete(`/api/wikis/${id}`);
+  return request.delete(`/wikis/${id}`);
 };
 
 /**
@@ -91,7 +91,7 @@ export const deleteWiki = (id: number): Promise<any> => {
  * @returns 成员列表
  */
 export const getWikiMembers = (id: number): Promise<any> => {
-  return request.get(`/api/wikis/${id}/members`);
+  return request.get(`/wikis/${id}/members`);
 };
 
 /**
@@ -102,7 +102,7 @@ export const getWikiMembers = (id: number): Promise<any> => {
  * @returns 添加结果
  */
 export const addWikiMember = (id: number, userId: number, role: string): Promise<any> => {
-  return request.post(`/api/wikis/${id}/members`, { userId, role });
+  return request.post(`/wikis/${id}/members`, { userId, role });
 };
 
 /**
@@ -112,5 +112,5 @@ export const addWikiMember = (id: number, userId: number, role: string): Promise
  * @returns 移除结果
  */
 export const removeWikiMember = (id: number, userId: number): Promise<any> => {
-  return request.delete(`/api/wikis/${id}/members/${userId}`);
+  return request.delete(`/wikis/${id}/members/${userId}`);
 };

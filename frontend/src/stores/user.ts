@@ -41,6 +41,8 @@ export const useUserStore = defineStore('user', () => {
     token.value = res.data.token
     user.value = res.data.user
     localStorage.setItem('token', res.data.token)
+    localStorage.setItem('username', res.data.user.username)
+    localStorage.setItem('userId', String(res.data.user.id))
     return res
   }
 
@@ -65,6 +67,8 @@ export const useUserStore = defineStore('user', () => {
     token.value = ''
     user.value = null
     localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('userId')
   }
 
   /**

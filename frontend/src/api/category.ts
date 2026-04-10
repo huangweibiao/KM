@@ -11,7 +11,7 @@ import type { Category } from '@/types'
  * @returns 分类列表
  */
 export function getCategoryList(wikiId: number) {
-  return request.get.get<Category[]>(`/wikis/${wikiId}/categories`)
+  return request.get<Category[]>(`/wikis/${wikiId}/categories`)
 }
 
 /**
@@ -20,8 +20,8 @@ export function getCategoryList(wikiId: number) {
  * @param data 分类数据
  * @returns 创建的分类
  */
-export function createCategory(wikiId: number, data: Partial Partial<Category>) {
-  return request.post.post<Category>(`/wikis/${wikiId}/categories`, data)
+export function createCategory(wikiId: number, data: Partial<Category>) {
+  return request.post<Category>(`/wikis/${wikiId}/categories`, data)
 }
 
 /**
@@ -30,8 +30,8 @@ export function createCategory(wikiId: number, data: Partial Partial<Category>) 
  * @param data 分类数据
  * @returns 更新后的分类
  */
-export function updateCategory(id: number, data: Partial Partial<Category>) {
-  return request.put.put<Category>(`/categories/${id}`, data)
+export function updateCategory(id: number, data: Partial<Category>) {
+  return request.put<Category>(`/categories/${id}`, data)
 }
 
 /**

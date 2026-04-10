@@ -42,7 +42,7 @@ export interface LoginResponse {
  * @returns 登录响应
  */
 export const login = (params: LoginParams): Promise<any> => {
-  return request.post('/api/auth/login', params);
+  return request.post('/auth/login', params);
 };
 
 /**
@@ -51,7 +51,7 @@ export const login = (params: LoginParams): Promise<any> => {
  * @returns 注册响应
  */
 export const register = (params: RegisterParams): Promise<any> => {
-  return request.post('/api/auth/register', params);
+  return request.post('/auth/register', params);
 };
 
 /**
@@ -59,7 +59,7 @@ export const register = (params: RegisterParams): Promise<any> => {
  * @returns 登出响应
  */
 export const logout = (): Promise<any> => {
-  return request.post('/api/auth/logout');
+  return request.post('/auth/logout');
 };
 
 /**
@@ -67,5 +67,5 @@ export const logout = (): Promise<any> => {
  * @returns 用户信息
  */
 export const getCurrentUser = (): Promise<any> => {
-  return request.get('/api/auth/me');
+  return request.get('/auth/me');
 };

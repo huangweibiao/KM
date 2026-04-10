@@ -22,7 +22,7 @@ export interface Notification {
  * @returns 通知列表
  */
 export const getNotifications = (): Promise<any> => {
-  return request.get('/api/notifications');
+  return request.get('/notifications');
 };
 
 /**
@@ -31,7 +31,7 @@ export const getNotifications = (): Promise<any> => {
  * @returns 操作结果
  */
 export const markNotificationRead = (id: number): Promise<any> => {
-  return request.put(`/api/notifications/${id}/read`);
+  return request.put(`/notifications/${id}/read`);
 };
 
 /**
@@ -39,5 +39,5 @@ export const markNotificationRead = (id: number): Promise<any> => {
  * @returns 操作结果
  */
 export const markAllNotificationsRead = (): Promise<any> => {
-  return request.put('/api/notifications/read-all');
+  return request.put('/notifications/read-all');
 };

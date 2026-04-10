@@ -76,7 +76,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { getWikiById } from '../api/wiki'
-import { getPageTree, createPage } from '../api/page'
+import { getPageTree, createPage as createPageApi } from '../api/page'
 import type { Wiki } from '../api/wiki'
 import type { PageTreeNode } from '../api/page'
 import { useUserStore } from '../stores/user'
@@ -85,8 +85,8 @@ const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 
-const wiki = ref ref<Wiki | null>(null)
-const pageTree = ref ref<PageTreeNode[]>([])
+const wiki = ref<Wiki | null>(null)
+const pageTree = ref<PageTreeNode[]>([])
 const createPageDialogVisible = ref(false)
 const pageForm = ref({
   title: '',
@@ -95,7 +95,7 @@ const pageForm = ref({
 })
 
 const wikiId = computed(() => Number(route.params.id))
-const canEdit = computed(() => userStore.isAuthenticated)
+const canEdit = computed(() => userStore.isLoggedIn)
 
 // 加载知识库详情
 const loadWiki = async () => {
@@ -133,14 +133,18 @@ const showCreatePageDialog = () => {
 }
 
 // 创建页面
-const createPageHandler = async () => {
+const createPage = async () => {
   if (!pageForm.value.title.trim()) {
     ElMessage.warning('请输入页面标题')
     return
   }
 
   try {
-    const res = await createPage(wikiId.value, pageForm.value)
+    const res = await createPageApi(wikiId.value, {
+      title: pageForm.value.title,
+      parentPageId: pageForm.value.parentPageId ?? undefined,
+      type: pageForm.value.type
+    })
     ElMessage.success('创建成功')
     createPageDialogVisible.value = false
     loadPageTree()

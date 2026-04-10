@@ -28,7 +28,7 @@ export const searchPages = (keyword: string, wikiId?: number): Promise<any> => {
   if (wikiId) {
     params.wikiId = wikiId;
   }
-  return request.get('/api/search', { params });
+  return request.get('/search', { params });
 };
 
 /**
@@ -37,7 +37,7 @@ export const searchPages = (keyword: string, wikiId?: number): Promise<any> => {
  * @returns 建议列表
  */
 export const getSearchSuggestions = (keyword: string): Promise<any> => {
-  return request.get('/api/search/suggest', {
+  return request.get('/search/suggest', {
     params: { q: keyword }
   });
 };

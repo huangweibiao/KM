@@ -1,5 +1,34 @@
 <template>
   <div class="home-container">
+    <!-- 顶部导航栏 -->
+    <div class="nav-bar">
+      <div class="nav-content">
+        <div class="nav-logo">
+          <span>KM Wiki</span>
+        </div>
+        <div class="nav-actions">
+          <template v-if="!isLoggedIn">
+            <el-button type="primary" @click="goToLogin">登录</el-button>
+            <el-button @click="goToRegister">注册</el-button>
+          </template>
+          <template v-else>
+            <el-dropdown @command="handleUserCommand">
+              <span class="user-dropdown">
+                <el-icon><User /></el-icon>
+                {{ username }}
+                <el-icon><ArrowDown /></el-icon>
+              </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </template>
+        </div>
+      </div>
+    </div>
+    
     <el-row :gutter="20">
       <el-col :span="16">
         <el-card>
@@ -70,13 +99,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { User, ArrowDown } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const recentPages = ref<any[]>([])
 const favorites = ref<any[]>([])
+
+// 简单判断登录状态，从 localStorage 获取
+const isLoggedIn = computed(() => !!localStorage.getItem('token'))
+const username = computed(() => localStorage.getItem('username') || '用户')
 
 onMounted(() => {
   // 这里可以加载最近更新和收藏数据
@@ -100,6 +134,24 @@ const goToSearch = () => {
   router.push('/search')
 }
 
+const goToLogin = () => {
+  router.push('/login')
+}
+
+const goToRegister = () => {
+  router.push('/register')
+}
+
+const handleUserCommand = (command: string) => {
+  if (command === 'logout') {
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('userId')
+    ElMessage.success('已退出登录')
+    location.reload()
+  }
+}
+
 const goToPage = (pageId: number) => {
   router.push(`/pages/${pageId}`)
 }
@@ -112,6 +164,51 @@ const formatDate = (dateStr: string) => {
 </script>
 
 <style scoped>
+.home-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.nav-bar {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #409eff;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.user-dropdown:hover {
+  background: #f5f5f5;
+}
+
 .home-container {
   padding: 20px;
 }
